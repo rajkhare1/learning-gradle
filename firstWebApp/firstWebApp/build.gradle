@@ -5,10 +5,13 @@
  * For more details take a look at the 'Building Java & JVM projects' chapter in the Gradle
  * User Manual available at https://docs.gradle.org/8.0.2/userguide/building_java_projects.html
  */
+import com.rajkhare.gradle.MyAWSPlugin
 
 plugins {
     id 'war'
     id 'org.gretty' version '4.0.3'
+    id 'jacoco'
+    id "org.sonarqube" version "4.0.0.2929"
 }
 
 repositories {
@@ -18,8 +21,23 @@ repositories {
 
 dependencies {
 	compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.3.1'
+
+
 
 }
 
 gretty.httpPort = 8082
+
+
+
+
+apply plugin: MyAWSPlugin 
+
+
+
+test.finalizedBy jacocoTestReport
+jacocoTestReport.dependsOn test
+deployToEC2.dependsOn copyToS3
 

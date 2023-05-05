@@ -1,1 +1,5 @@
-
+project(':services'){
+        dependencies {
+                implementation project(':data')
+      }
+}

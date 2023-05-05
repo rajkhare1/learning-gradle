@@ -12,9 +12,9 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 }
-
 project(':web'){
-	dependencies {
-        	implementation project(':services')
+        dependencies {
+                implementation project(':services')
       }
 }
+

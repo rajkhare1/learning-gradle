@@ -1,0 +1,21 @@
+subprojects {
+	apply plugin: 'java'
+
+	version = '1.0'
+	group = 'com.rajkhare'
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		testImplementation 'junit:junit:4.13.2'
+	}
+
+}
+
+project(':web'){
+	dependencies {
+		implementation project (':data')
+	}
+}
